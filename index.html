@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Diff-2-in-1: Bridging Generation and Dense Perception with Diffusion Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./src/original/dics.original.css">
+  <script src="./src/original/dics.original.js"></script>
+
+      <script>
+
+        document.addEventListener('DOMContentLoaded', domReady);
+
+        function domReady() {
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[0],
+                textPosition: 'top'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[1],
+                hideTexts: true,
+                textPosition: 'center'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[2]
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[3],
+                linesOrientation: 'vertical',
+                textPosition: 'left',
+                arrayBackgroundColorText: ['#000000', '#FFFFFF'],
+                arrayColorText: ['#FFFFFF', '#000000'],
+                linesColor: 'rgb(0,0,0)'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[4],
+                linesOrientation: 'vertical',
+                textPosition: 'right'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[5],
+                textPosition: 'bottom'
+            });
+
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[6],
+                filters: ['blur(3px)', 'grayscale(1)', 'sepia(1)', 'saturate(3)']
+            });
+            new Dics({
+                container: document.querySelectorAll('.b-dics')[7],
+                rotate: '45deg'
+            });
+
+        }
+    </script>
+  
+<!--   <script src="./dist/split-view.js"></script> -->
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h3 class="title is-3 publication-title">Diff-2-in-1: Bridging Generation and Dense Perception with Diffusion Models</h3>
+
+          
+          <h4 class="title is-4">ICLR 2025</h4> 
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zsh2000.github.io/">Shuhong Zheng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://zpbao.github.io/">Zhipeng Bao</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://thuroi0787.github.io/">Ruoyu Zhao</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="http://www.cs.cmu.edu/~hebert/">Martial Hebert</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yxw.web.illinois.edu/">Yu-Xiong Wang</a><sup>1</sup>
+            </span>
+  
+          </div>
+
+           <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
+            <span class="author-block"><sup>2</sup>Carnegie Mellon University</span>
+             <span class="author-block"><sup>3</sup>Tsinghua University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2411.05005"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+
+
+
+              
+<!--               <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+
+
+
+
+              
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zsh2000/diff-2-in-1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <split-view>
+  <picture slot="top">
+    <img src="./static/images/pic_1.png" alt="Day" />
+  </picture>
+  <picture slot="bottom">
+    <img src="./static/images/pic_2.png" alt="Night" />
+  </picture>
+</split-view> -->
+  
+
+  <section class="section">
+  <div class="column is-full-width">
+<!--   <div class="container is-max-desktop"> -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+<!--         <h2 class="title is-3">SUNDiff Pipeline</h2> -->
+        <div class="content has-text-justified">
+        <div align="center"><img src="./static/images/1.png" alt="" width=90% /></span></div>
+          <p  style="text-align: center">
+            A single, unified diffusion-based model Diff-2-in-1 bridging generative and discriminative learning
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+      </div>
+</section>
+  
+  
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/demo_video_without_submission_info_AdobeExpress.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Our MuvieNeRF compared with conventional discriminative multi-task learning method.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+          <p>
+          Beyond high-fidelity image synthesis, diffusion models have recently exhibited
+promising results in dense visual perception tasks. However, most existing work
+treats diffusion models as a standalone component for perception tasks, employing them either solely for off-the-shelf data augmentation or as mere feature extractors.
+          </p>
+            <p>
+           In contrast to these isolated and thus sub-optimal efforts, we introduce a
+unified, versatile, diffusion-based framework, Diff-2-in-1, that can simultaneously
+handle both multi-modal data generation and dense visual perception, through a
+unique exploitation of the diffusion-denoising process. Within this framework, we
+further enhance discriminative visual perception via multi-modal generation, by
+utilizing the denoising network to create multi-modal data that mirror the distribution of the original training set. Importantly, Diff-2-in-1 optimizes the utilization
+of the created diverse and faithful data by leveraging a novel self-improving learning mechanism. 
+          </p>
+          
+              <p>
+          Comprehensive experimental evaluations validate the effectiveness of our framework, showcasing consistent performance improvements across
+various discriminative backbones and high-quality multi-modal data generation
+characterized by both realism and usefulness.
+          </p>
+
+
+          
+<!--            <p>
+          Multi-task visual learning is a critical aspect of computer vision. 
+          Current research predominantly concentrates on the multi-task dense prediction setting, 
+          which overlooks the intrinsic 3D world and its multi-view consistent structures, and lacks the 
+          capacity for versatile imagination.
+     </p>
+          <p>
+          To address these limitations, we present a novel problem setting -- multi-task view synthesis (MTVS), 
+          which reinterprets multi-task prediction as a set of novel-view synthesis tasks for multiple scene properties, including RGB.
+     To tackle the MTVS problem, we propose MuvieNeRF, a framework that incorporates both multi-task and cross-view knowledge to simultaneously 
+          synthesize multiple scene properties. \modelname integrates two key modules, the Cross-Task Attention (CTA) and Cross-View Attention (CVA) modules, 
+          enabling the efficient use of information across multiple views and tasks.
+     </p>
+          <p>
+          Extensive evaluations on both synthetic and realistic benchmarks demonstrate that MuvieNeRF is capable of simultaneously 
+          synthesizing different scene properties with promising visual quality, even outperforming conventional discriminative models in various settings. 
+          Notably, we show that MuvieNeRF exhibits universal applicability across a range of NeRF backbones.
+          </p> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+<!--     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+    <section class="section">
+  <div class="column is-full-width">
+<!--   <div class="container is-max-desktop"> -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Diff-2-in-1 Pipeline</h2>
+        <div class="content has-text-justified">
+         Our Diff-2-in-1 framework is a unified diffusion model with two sets of parameters. The data creation parameter θ<sub>C</sub> generates synthetic samples, while the data exploitation
+parameter θ<sub>E</sub> performs discriminative learning with both the original and the synthetic samples. The
+creation parameter θ<sub>C</sub> gets self-improved during optimization.
+        <div align="center"><img src="./static/images/2.png" alt="" width=90% /></span></div>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+      </div>
+</section>
+
+  
+
+  
+    <section class="section">
+  <div class="column is-full-width">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">
+        
+
+          <h3 class="title is-4">Comparison with Baselines</h3>
+        <div class="content has-text-justified">
+          <p>
+            We show the qualitative results on surface normal task in NYUv2 and multi-task benchmarks NYUD-MT and PASCAL-Context, showing the performance boost after building our Diff-2-in-1 on existing methods.
+<!--             
+            conduct experiments on two datasets: <a href="https://arxiv.org/abs/1906.05797">Replica</a> and <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/McCormac_SceneNet_RGB-D_Can_ICCV_2017_paper.pdf">SceneNet RGB-D</a>. 
+            Five tasks beyond RGB are chosen: surface normal prediction (SN), 
+            shading prediction (SH), edge detection (ED), keypoint detection (KP) and semantic label prediction (SL). Baseline methods include the state-of-the-art discriminative model
+            <a href="https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136870506.pdf">InvPT</a>, single-task NeRF model
+            <a href="https://shuaifengzhi.com/Semantic-NeRF/">Semantic-NeRF</a> and naive multi-task NeRF model 
+            <a href="https://openaccess.thecvf.com/content/WACV2023/papers/Zhang_Beyond_RGB_Scene-Property_Synthesis_With_Neural_Radiance_Fields_WACV_2023_paper.pdf">SS-NeRF</a>. -->
+          </p>
+
+          <br>
+          
+          
+          <p>
+            Qualitative comparison for surface normal on NYUv2 dataset:
+          </p>
+        
+          <div align="center"><img src="./static/images/3.png" alt="" width=85% /></span></div>
+
+<!-- 
+              <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+<div class="b-dics" style="width: 90%">
+  <img src="./static/images/1-1.png" alt="Image" />
+  <img src="./static/images/1-2.png" alt="Bae et al." />
+  <img src="./static/images/1-3.png" alt="Ours" />
+  <img src="./static/images/1-4.png" alt="Ground Truth" />
+</div>
+      </div>
+    </div>
+      </div>
+</section>
+ -->
+
+          
+          <p>
+            Qualitative comparison for depth estimation, surface normal estimation, and semantic segmentation on NYUD-MT dataset:
+          </p>
+          <div align="center"><img src="./static/images/4.png" alt="" width=90% /></span></div>
+        </div>
+
+<br>
+          <br>
+          
+          <p>
+            Qualitative comparison for semantic segmentation, human parsing, saliency detection, and surface normal estimation on PASCAL-Context dataset:
+          </p>
+          <div align="center"><img src="./static/images/5.png" alt="" width=90% /></span></div>
+        </div>
+        
+
+<br>
+        <br>
+        <br>
+        
+        
+          <h3 class="title is-4" align="left">Multi-modal Generation</h3>
+        <div class="content has-text-justified">
+          <p>
+            Besides the evaluations on how powerful our Diff-2-in-1 is from the discriminative perspective. 
+            Below we also show the high quality of the generated multi-modal data, which are not only realistic but also useful for applications like data augmentation.
+          </p>
+
+<br>
+          <br>
+          
+           <p>
+            The generated multi-modal data with Diff-2-in-1 trained on surface normal task on NYUv2:
+             <div align="center"><img src="./static/images/9.png" alt="" width=80% /></span></div>
+          </p>
+
+          <br>
+          <br>
+
+
+          <p>
+            The generated multi-modal data with Diff-2-in-1 trained on multiple tasks of depth estimation, surface normal estimation, and semantic segmentation on NYUD-MT:
+             <div align="center"><img src="./static/images/6.png" alt="" width=80% /></span></div>
+          </p>
+
+<br>
+          <br>
+
+          <p>
+            The generated multi-modal data with Diff-2-in-1 trained on multiple tasks of semantic segmentation, human parsing, saliency detection, and surface normal estimation on PASCAL-Context:
+             <div align="center"><img src="./static/images/7.png" alt="" width=80% /></span></div>
+          </p>
+
+<br>
+          <br>
+
+
+          <p>
+            When using the generated samples from our Diff-2-in-1 and the same number
+of additional unlabeled real images in the NYUv2 dataset. When using the generated data, we could
+achieve comparable performance with the unlabeled real captured data, demonstrating the good
+quality of the synthetic data from our Diff-2-in-1 framework.
+             <div align="center"><img src="./static/images/10.png" alt="" width=80% /></span></div>
+          </p>
+
+          
+<!--           <p>
+            Four out-of-distribution datasets <a href="http://www.scan-net.org/">ScanNet</a>, 
+            <a href="https://theairlab.org/tartanair-dataset/">TartanAir</a>, 
+            <a href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Yao_BlendedMVS_A_Large-Scale_Dataset_for_Generalized_Multi-View_Stereo_Networks_CVPR_2020_paper.pdf">BlendedMVS</a>, 
+            <a href="https://bmild.github.io/llff/">LLFF</a> (from left to right, top to bottom) are evaluated:
+          </p>
+          <div align="center"><img src="./static/images/ood.png" alt="" width=85% /></span></div> -->
+        </div>
+<!--         <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div> -->
+
+          
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+  
+
+  
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{zheng2025diff2in1,
+  title={Diff-2-in-1: Bridging Generation and Dense Perception with Diffusion Models},
+  author={Zheng, Shuhong and Bao, Zhipeng and Zhao, Ruoyu and Hebert, Martial and Wang, Yu-Xiong},
+  booktitle={ICLR},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2411.05005">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+<!--       <a class="icon-link" href="https://github.com/zsh2000/" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The website template is borrowed from the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website. Thanks the authors of Nerfies of sharing this great template!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
