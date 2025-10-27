@@ -103,15 +103,15 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h3 class="title is-3 publication-title">Diff-2-in-1: Bridging Generation and Dense Perception with Diffusion Models</h3>
+          <h3 class="title is-3 publication-title">Track, Inpaint, Resplat: Subject-driven 3D and 4D Generation with Progressive Texture Infilling</h3>
 
           
-          <h4 class="title is-4">ICLR 2025</h4> 
+          <h4 class="title is-4">NeurIPS 2025</h4> 
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://zsh2000.github.io/">Shuhong Zheng</a><sup>1,2</sup>,</span>
             <span class="author-block">
-              <a href="https://ashmrz.github.io/">Ashkan Mirzaei</a><sup>1,2</sup>,</span>
+              <a href="https://ashmrz.github.io/">Ashkan Mirzaei</a><sup>3</sup>,</span>
             <span class="author-block">
               <a href="https://www.gilitschenski.org/igor/">Igor Gilitschenski</a><sup>1,2</sup>
             </span>
@@ -120,7 +120,8 @@
 
            <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Toronto,</span>
-            <span class="author-block"><sup>2</sup>Vector Institute</span>
+            <span class="author-block"><sup>2</sup>Vector Institute,</span>
+            <span class="author-block"><sup>3</sup>Snap Inc.</span>
           </div>
 
           <div class="column has-text-centered">
@@ -149,7 +150,7 @@
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
+               Video Link. -->
 
 
 
@@ -157,12 +158,12 @@
               
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/zsh2000/diff-2-in-1"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a class="external-link button is-normal is-rounded is-dark" 
+                   style="opacity: 0.4; cursor: not-allowed; pointer-events: none;">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code (In Preparation)</span>
                   </a>
               </span>
               <!-- Dataset Link. -->
@@ -196,9 +197,9 @@
       <div class="column is-four-fifths">
 <!--         <h2 class="title is-3">SUNDiff Pipeline</h2> -->
         <div class="content has-text-justified">
-        <div align="center"><img src="./static/images/1.png" alt="" width=90% /></span></div>
+        <div align="center"><img src="./static/images/tire_teaser.png" alt="" width=80% /></span></div>
           <p  style="text-align: center">
-            A single, unified diffusion-based model Diff-2-in-1 bridging generative and discriminative learning
+            State-of-the-art 4D generation model L4GM and our solution.
           </p>
         </div>
       </div>
@@ -223,6 +224,8 @@
 </section> -->
 
 
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -232,25 +235,15 @@
         <div class="content has-text-justified">
 
           <p>
-          Beyond high-fidelity image synthesis, diffusion models have recently exhibited
-promising results in dense visual perception tasks. However, most existing work
-treats diffusion models as a standalone component for perception tasks, employing them either solely for off-the-shelf data augmentation or as mere feature extractors.
+          Current 3D/4D generation methods are usually optimized for photorealism, efficiency, and aesthetics. 
+          However, they often fail to preserve the semantic identity of the subject across different viewpoints. 
+          Adapting generation methods with one or few images of a specific subject (also known as Personalization or Subject-driven generation) allows generating visual content that align with the identity of the subject. 
+          However, personalized 3D/4D generation is still largely underexplored.
           </p>
             <p>
-           In contrast to these isolated and thus sub-optimal efforts, we introduce a
-unified, versatile, diffusion-based framework, Diff-2-in-1, that can simultaneously
-handle both multi-modal data generation and dense visual perception, through a
-unique exploitation of the diffusion-denoising process. Within this framework, we
-further enhance discriminative visual perception via multi-modal generation, by
-utilizing the denoising network to create multi-modal data that mirror the distribution of the original training set. Importantly, Diff-2-in-1 optimizes the utilization
-of the created diverse and faithful data by leveraging a novel self-improving learning mechanism. 
+           In this work, we introduce TIRE (Track, Inpaint, REsplat), a novel method for subject-driven 3D/4D generation. It takes an initial 3D asset produced by an existing 3D generative model as input and uses video tracking to identify the regions that need to be modified. Then, we adopt a subject-driven 2D inpainting model for progressively infilling the identified regions. Finally, we resplat the modified 2D multi-view observations back to 3D while still maintaining consistency. Extensive experiments demonstrate that our approach significantly improves identity preservation in 3D/4D generation compared to state-of-the-art methods.
           </p>
           
-              <p>
-          Comprehensive experimental evaluations validate the effectiveness of our framework, showcasing consistent performance improvements across
-various discriminative backbones and high-quality multi-modal data generation
-characterized by both realism and usefulness.
-          </p>
 
 
           
@@ -299,13 +292,33 @@ characterized by both realism and usefulness.
 
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Diff-2-in-1 Pipeline</h2>
+      <div class="column is-three-fifths">
+        <h2 class="title is-3">TIRE Pipeline</h2>
         <div class="content has-text-justified">
-         Our Diff-2-in-1 framework is a unified diffusion model with two sets of parameters. The data creation parameter θ<sub>C</sub> generates synthetic samples, while the data exploitation
-parameter θ<sub>E</sub> performs discriminative learning with both the original and the synthetic samples. The
-creation parameter θ<sub>C</sub> gets self-improved during optimization.
-        <div align="center"><img src="./static/images/2.png" alt="" width=90% /></span></div>
+         <p> Our proposed method, TIRE, consists of three stages: Track, Inpaint, Resplat. 
+         </p>
+         <p> (1) Track aims at providing the masks
+indicating the infilling regions from other viewpoints beyond the given source view. 
+ </p>
+         <p> 
+(2) Inpaint
+targets at progressively infilling the unobserved regions in other viewpoints with the infilled contents
+preserving the identity, while the regions are identified by the previous Track step.
+</p>
+         <p> (3) Resplat
+is responsible for unprojecting the 2D infilled observations back to 3D.
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <!-- <h2 class="title is-3">Video</h2> -->
+        <div class="publication-video">
+          <iframe src="./static/images/method_tire.mp4"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video.
+        <div align="center"><img src="./static/images/2.png" alt="" width=90% /></span></div> -->
         </div>
       </div>
     </div>
@@ -320,15 +333,16 @@ creation parameter θ<sub>C</sub> gets self-improved during optimization.
   <div class="column is-full-width">
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-three-fifths">
         <h2 class="title is-3">Experimental Results</h2>
         <div class="content has-text-justified">
         
 
-          <h3 class="title is-4">Comparison with Baselines</h3>
+          <!-- <h3 class="title is-4">Comparison with Baselines</h3> -->
         <div class="content has-text-justified">
           <p>
-            We show the qualitative results on surface normal task in NYUv2 and multi-task benchmarks NYUD-MT and PASCAL-Context, showing the performance boost after building our Diff-2-in-1 on existing methods.
+            Qualitative comparison on image-to-3D generation with SV3D, Wonder3D,
+LGM, MeshFormer, TRELLIS, and Hunyuan3D-v2.5. Our TIRE better preserves the identity of the subject for the generated 3D assets.
 <!--             
             conduct experiments on two datasets: <a href="https://arxiv.org/abs/1906.05797">Replica</a> and <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/McCormac_SceneNet_RGB-D_Can_ICCV_2017_paper.pdf">SceneNet RGB-D</a>. 
             Five tasks beyond RGB are chosen: surface normal prediction (SN), 
@@ -338,14 +352,10 @@ creation parameter θ<sub>C</sub> gets self-improved during optimization.
             <a href="https://openaccess.thecvf.com/content/WACV2023/papers/Zhang_Beyond_RGB_Scene-Property_Synthesis_With_Neural_Radiance_Fields_WACV_2023_paper.pdf">SS-NeRF</a>. -->
           </p>
 
-          <br>
           
           
-          <p>
-            Qualitative comparison for surface normal on NYUv2 dataset:
-          </p>
         
-          <div align="center"><img src="./static/images/3.png" alt="" width=85% /></span></div>
+          <div align="center"><img src="./static/images/qual1.png" alt="" width=100% /></span></div>
 
 <!-- 
               <section class="section">
@@ -364,29 +374,50 @@ creation parameter θ<sub>C</sub> gets self-improved during optimization.
 </section>
  -->
 
+ <br>
+ <p>
+          
+          </p>
+
           
           <p>
-            Qualitative comparison for depth estimation, surface normal estimation, and semantic segmentation on NYUD-MT dataset:
+            Although TIRE mainly aims to improve subject-driven appearance
+modeling of the generated 3D/4D assets, it also demonstrates <b>better geometry</b> quality than the baseline
+methods.
           </p>
-          <div align="center"><img src="./static/images/4.png" alt="" width=90% /></span></div>
+          <div align="center"><img src="./static/images/qual2.png" alt="" width=100% /></span></div>
         </div>
 
 <br>
           <br>
           
-          <p>
-            Qualitative comparison for semantic segmentation, human parsing, saliency detection, and surface normal estimation on PASCAL-Context dataset:
-          </p>
-          <div align="center"><img src="./static/images/5.png" alt="" width=90% /></span></div>
+          <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <!-- <h2 class="title is-3">Video</h2> -->
+        <div class="publication-video">
+          <iframe src="./static/images/qual_video_1.mp4"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <!-- <h2 class="title is-3">Video</h2> -->
+        <div class="publication-video">
+          <iframe src="./static/images/qual_video_2.mp4"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
         </div>
         
 
-<br>
-        <br>
-        <br>
         
         
-          <h3 class="title is-4" align="left">Multi-modal Generation</h3>
+          <!-- <h3 class="title is-4" align="left">Multi-modal Generation</h3>
         <div class="content has-text-justified">
           <p>
             Besides the evaluations on how powerful our Diff-2-in-1 is from the discriminative perspective. 
@@ -430,7 +461,7 @@ quality of the synthetic data from our Diff-2-in-1 framework.
              <div align="center"><img src="./static/images/10.png" alt="" width=80% /></span></div>
           </p>
 
-          
+           -->
 <!--           <p>
             Four out-of-distribution datasets <a href="http://www.scan-net.org/">ScanNet</a>, 
             <a href="https://theairlab.org/tartanair-dataset/">TartanAir</a>, 
@@ -478,10 +509,10 @@ quality of the synthetic data from our Diff-2-in-1 framework.
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{zheng2025diff2in1,
-  title={Diff-2-in-1: Bridging Generation and Dense Perception with Diffusion Models},
-  author={Zheng, Shuhong and Bao, Zhipeng and Zhao, Ruoyu and Hebert, Martial and Wang, Yu-Xiong},
-  booktitle={ICLR},
+    <pre><code>@inproceedings{zheng2025trackinpaintresplat,
+  title={Track, Inpaint, Resplat: Subject-driven 3D and 4D Generation with Progressive Texture Infilling},
+  author={Zheng, Shuhong and Mirzaei, Ashkan and Gilitschenski, Igor},
+  booktitle={NeurIPS},
   year={2025}
 }</code></pre>
   </div>
@@ -489,16 +520,16 @@ quality of the synthetic data from our Diff-2-in-1 framework.
 
 
 <footer class="footer">
-  <div class="container">
+  <!-- <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
          href="https://arxiv.org/pdf/2411.05005">
         <i class="fas fa-file-pdf"></i>
-      </a>
+      </a> -->
 <!--       <a class="icon-link" href="https://github.com/zsh2000/" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a> -->
-    </div>
+    <!-- </div> -->
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
